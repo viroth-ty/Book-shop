@@ -1,32 +1,63 @@
 package org.viroth.bookstore.app.view.book
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import org.viroth.bookstore.app.R
+import org.viroth.bookstore.app.databinding.BookFragmentBinding
 
 class BookFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = BookFragment()
-    }
-
-    private lateinit var viewModel: BookViewModel
+    private val viewModel: BookViewModel by viewModels()
+    private var _binding: BookFragmentBinding? = null
+    private lateinit var bookAdapter: BookAdapter
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.book_fragment, container, false)
+    ): View {
+        _binding = BookFragmentBinding.inflate(inflater, container, false);
+        return binding.root;
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(BookViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val navController = findNavController()
+
+        initView();
+        initEvent()
+        initObservation()
+    }
+
+    private fun initView() {
+        bookAdapter = BookAdapter {
+            findNavController().navigate(R.id.action_bookFragment_to_bookDetailFragment)
+        }
+        val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
+        binding.bookRecyclerView.layoutManager = layoutManager
+        binding.bookRecyclerView.adapter = bookAdapter
+    }
+
+    private fun initEvent() {
+        viewModel.getBook();
+    }
+
+    private fun initObservation() {
+        viewModel.books.observe(viewLifecycleOwner) {
+            bookAdapter.submitList(it.hydraMember)
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
 }

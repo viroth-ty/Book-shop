@@ -19,7 +19,7 @@ private val httpClient = OkHttpClient
         val request: Request = chain
             .request()
             .newBuilder()
-            .addHeader("Accept", "application/json")
+            .addHeader("Accept", "application/ld+json")
             .addHeader("Content-Type", "application/x-www-form-urlencoded")
             .build()
         chain.proceed(request)

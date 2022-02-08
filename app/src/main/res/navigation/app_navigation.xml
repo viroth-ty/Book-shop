@@ -3,28 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/app_navigation"
-    app:startDestination="@id/bookFragment">
-
-    <keep_state_fragment
-        android:id="@+id/bookFragment"
-        android:name="org.viroth.bookstore.app.view.book.BookFragment"
-        android:label="fragment_book"
-        tools:layout="@layout/book_fragment" />
+    app:startDestination="@id/bookContainerFragment">
 
     <keep_state_fragment
         android:id="@+id/favouriteFragment"
         android:name="org.viroth.bookstore.app.view.favourite.FavouriteFragment"
         android:label="favourite_fragment"
         tools:layout="@layout/favourite_fragment" />
+
     <keep_state_fragment
         android:id="@+id/managementFragment"
         android:name="org.viroth.bookstore.app.view.management.ManagementFragment"
         android:label="management_fragment"
         tools:layout="@layout/management_fragment" />
+
     <keep_state_fragment
         android:id="@+id/profileFragment"
         android:name="org.viroth.bookstore.app.view.profile.ProfileFragment"
         android:label="profile_fragment"
         tools:layout="@layout/profile_fragment" />
+
+    <keep_state_fragment
+        android:id="@+id/bookContainerFragment"
+        android:name="org.viroth.bookstore.app.view.book.BookContainerFragment"
+        android:label="fragment_book_container"
+        tools:layout="@layout/fragment_book_container" />
 
 </navigation>
