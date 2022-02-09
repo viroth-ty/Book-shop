@@ -6,4 +6,7 @@
     <string name="management">Management</string>
     <string name="favourite">Favourite</string>
     <string name="profile">Profile</string>
+    <string name="description">Description</string>
+    <string name="review">Review</string>
+    <string name="detail">Book detail</string>
 </resources>

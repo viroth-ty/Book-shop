@@ -5,13 +5,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
-import coil.transform.CircleCropTransformation
+import com.bumptech.glide.Glide
 import org.viroth.bookstore.app.R
 import org.viroth.bookstore.app.databinding.BookItemViewBinding
 import org.viroth.bookstore.app.model.HydraMember
+import org.viroth.bookstore.app.util.Util
 
-class BookAdapter(private val clickListener: () -> Unit) :
+class BookAdapter(
+    private val clickListener: (HydraMember) -> Unit,
+    private val favouriteClickListener: (HydraMember) -> Unit
+) :
     androidx.recyclerview.widget.ListAdapter<HydraMember, BookAdapter.PostViewHolder>(
         PostDiffCallback()
     ) {
@@ -24,21 +27,20 @@ class BookAdapter(private val clickListener: () -> Unit) :
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         val item = getItem(position)
-        holder.binding.imageView.load(item.url) {
-            crossfade(true)
-            placeholder(R.mipmap.ic_launcher)
-            error(R.mipmap.ic_launcher)
-
-            transformations(CircleCropTransformation())
-        }
-        holder.binding.bookAuthor.text = item.author
-        holder.binding.bookTitle.text = item.title
+        Glide.with(holder.binding.bookImageView)
+            .load(item.url)
+            .centerCrop()
+            .placeholder(Util.randomImage())
+            .into(holder.binding.bookImageView)
+        holder.binding.bookAuthorTextView.text = item.author
+        holder.binding.bookTitleTextView.text = item.title
         holder.binding.root.setOnClickListener {
-            clickListener();
+            clickListener.invoke(item)
+        }
+        holder.binding.favouriteButton.setOnClickListener {
+            favouriteClickListener.invoke(item)
         }
     }
-
-    override fun getItemCount(): Int = super.getItemCount()
 
     override fun getItemId(position: Int): Long = position.toLong()
 

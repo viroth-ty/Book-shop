@@ -4,12 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.viroth.bookstore.app.R
+import org.viroth.bookstore.app.data.local.Constant
 import org.viroth.bookstore.app.databinding.BookFragmentBinding
+import org.viroth.bookstore.app.util.Util
 
 class BookFragment : Fragment() {
 
@@ -29,17 +32,18 @@ class BookFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val navController = findNavController()
-
         initView();
         initEvent()
         initObservation()
     }
 
     private fun initView() {
-        bookAdapter = BookAdapter {
-            findNavController().navigate(R.id.action_bookFragment_to_bookDetailFragment)
-        }
+        bookAdapter = BookAdapter(clickListener = {
+            val bundle = bundleOf(Constant.Book.BOOKING_ID to Util.findBookId(it.id))
+            findNavController().navigate(R.id.action_bookFragment_to_bookDetailFragment, bundle)
+        }, favouriteClickListener = {
+
+        })
         val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
         binding.bookRecyclerView.layoutManager = layoutManager
         binding.bookRecyclerView.adapter = bookAdapter

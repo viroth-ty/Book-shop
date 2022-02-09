@@ -11,4 +11,8 @@ class Constant {
         const val LIGHT = 2
         const val YELLOW = 2
     }
+
+    object Book {
+        const val BOOKING_ID = "book_id";
+    }
 }
