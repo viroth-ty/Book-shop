@@ -15,7 +15,7 @@
 
         <com.google.android.material.appbar.MaterialToolbar
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="?attr/actionBarSize">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -27,6 +27,7 @@
                     style="@style/Style.App.ImageButton"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:clickable="true"
+                    android:layout_marginStart="@dimen/menu_item_padding"
                     android:contentDescription="@null"
                     android:focusable="true"
                     android:src="@drawable/ic_back" />

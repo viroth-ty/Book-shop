@@ -9,7 +9,6 @@ import com.bumptech.glide.Glide
 import org.viroth.bookstore.app.R
 import org.viroth.bookstore.app.databinding.BookItemViewBinding
 import org.viroth.bookstore.app.model.HydraMember
-import org.viroth.bookstore.app.util.Util
 
 class BookAdapter(
     private val clickListener: (HydraMember) -> Unit,
@@ -27,10 +26,11 @@ class BookAdapter(
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         val item = getItem(position)
+        println("img ${item}")
         Glide.with(holder.binding.bookImageView)
-            .load(item.url)
+            .load(R.drawable.img_placeholder)
             .centerCrop()
-            .placeholder(Util.randomImage())
+            .placeholder(R.mipmap.ic_launcher_round)
             .into(holder.binding.bookImageView)
         holder.binding.bookAuthorTextView.text = item.author
         holder.binding.bookTitleTextView.text = item.title
@@ -40,6 +40,7 @@ class BookAdapter(
         holder.binding.favouriteButton.setOnClickListener {
             favouriteClickListener.invoke(item)
         }
+        holder.binding.favouriteButton.setBackgroundResource(if(item.isSave == 1) R.drawable.ic_active_favourite else R.drawable.ic_inactive_favourite)
     }
 
     override fun getItemId(position: Int): Long = position.toLong()

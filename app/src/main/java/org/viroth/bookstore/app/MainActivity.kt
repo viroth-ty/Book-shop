@@ -40,6 +40,9 @@ class MainActivity : BookAppActivity() {
                     R.id.bookContainerFragment -> {
                         Navigation.findNavController(this, R.id.book_host_fragment).navigateUp()
                     }
+                    R.id.favouriteContainerFragment -> {
+                        Navigation.findNavController(this, R.id.favourite_host_fragment).navigateUp()
+                    }
                 }
             } catch (e: Exception) {
 

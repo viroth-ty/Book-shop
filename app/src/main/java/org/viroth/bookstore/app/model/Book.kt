@@ -2,6 +2,9 @@ package org.viroth.bookstore.app.model
 
 import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.*
+import org.viroth.bookstore.app.R
+import org.viroth.bookstore.app.util.Util
+import retrofit2.http.Url
 
 @Serializable
 data class Book (
@@ -29,20 +32,25 @@ data class Book (
 
 @Serializable
 data class HydraMember (
-   @SerializedName("@id")
+    @SerializedName("@id")
     val id: String,
 
-   @SerializedName("@type")
-    val type: String,
+    @SerializedName("@type")
+    val type: String?  = null,
 
-    val isbn: String,
-    val title: String,
-    val description: String,
-    val author: String,
-    val url: String = "",
-    val publicationDate: String,
-    val reviews: List<Review>
-)
+    val isbn: String? = null,
+    val title: String? = null,
+    val description: String? = null,
+    val author: String? = null,
+    var url: Int? = null,
+    val publicationDate: String? = null,
+    val reviews: ArrayList<Review> = arrayListOf(),
+    var isSave: Int = 0
+) {
+    init {
+        url = R.drawable.img_placeholder
+    }
+}
 
 @Serializable
 data class Review (

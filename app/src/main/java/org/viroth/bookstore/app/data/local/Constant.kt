@@ -13,6 +13,11 @@ class Constant {
     }
 
     object Book {
-        const val BOOKING_ID = "book_id";
+        const val BOOKING_ID = "book_id"
+    }
+
+    object SearchBy {
+        const val AUTHOR = "author"
+        const val TITLE = "title"
     }
 }

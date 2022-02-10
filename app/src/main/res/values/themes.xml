@@ -13,10 +13,19 @@
         <item name="rippleColor">?attr/colorPrimary</item>
         <item name="itemRippleColor">?attr/colorPrimary</item>
         <item name="tabRippleColor">?attr/colorPrimary</item>
+        <item name="toolbarStyle">@style/Style.App.Toolbar</item>
+        <item name="android:textColorSecondary">@color/white</item>
+
     </style>
 
     <style name="Style.App.CornerSize" parent="">
         <item name="cornerSize">6%</item>
+    </style>
+
+    <style name="Style.App.Toolbar" parent="">
+        <item name="android:contentInsetLeft">0dp</item>
+        <item name="android:contentInsetStart">0dp</item>
+        <item name="contentInsetStartWithNavigation">0dp</item>
     </style>
 
     <style name="Style.App.ImageButton" parent="">
@@ -34,4 +43,20 @@
         <item name="android:textSize">24sp</item>
     </style>
 
+    <style name="Style.App.TextInputLayout" parent="@style/Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="android:textColor">@color/black</item>
+        <item name="cardCornerRadius">4dp</item>
+        <item name="boxCornerRadiusTopStart">@dimen/item_card_corner</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/item_card_corner</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/item_card_corner</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/item_card_corner</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="placeholderText">@string/search</item>
+        <item name="android:padding">0dp</item>
+        <item name="backgroundColor">@color/white</item>
+    </style>
+
+    <dimen name="item_card_corner">4dp</dimen>
+    <string name="search">Search any books....</string>
 </resources>

@@ -9,4 +9,7 @@
     <string name="description">Description</string>
     <string name="review">Review</string>
     <string name="detail">Book detail</string>
+    <string name="author">Author</string>
+    <string name="title">Title</string>
+    <string name="searchBy">Search any books by %1s</string>
 </resources>

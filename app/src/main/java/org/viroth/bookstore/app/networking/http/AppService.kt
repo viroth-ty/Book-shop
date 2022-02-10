@@ -8,12 +8,14 @@ import retrofit2.http.*
 
 interface AppService {
     @GET("/books")
-    suspend fun getBook(): Response<Book>
+    suspend fun getBook(
+        @Query("title") title: String,
+        @Query("page") page: Int = 1,
+        @Query("author") author: String
+    ): Response<Book>
 
     @GET("/books/{id}")
     suspend fun getBookInformation(
         @Path("id") bookId: String
     ): Response<BookInformation>
-
-
 }

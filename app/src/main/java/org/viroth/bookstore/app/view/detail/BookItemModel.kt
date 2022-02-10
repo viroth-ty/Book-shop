@@ -9,7 +9,6 @@ import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.bumptech.glide.Glide
 import org.viroth.bookstore.app.R
 import org.viroth.bookstore.app.databinding.ComponentBookItemBinding
-import org.viroth.bookstore.app.util.Util
 
 @EpoxyModelClass(layout = R.layout.component_book_item)
 abstract class BookItemModel : EpoxyModelWithHolder<BookItemModel.BookItemModelViewHolder>() {
@@ -29,14 +28,14 @@ abstract class BookItemModel : EpoxyModelWithHolder<BookItemModel.BookItemModelV
     @field:EpoxyAttribute
     var description: String? = null
 
-
     @SuppressLint("SetTextI18n")
     override fun bind(holder: BookItemModelViewHolder) {
         super.bind(holder)
+
         Glide.with(holder.binding.bookImageView)
-            .load(imageUrl)
+            .load(R.drawable.img_placeholder)
             .centerCrop()
-            .placeholder(Util.randomImage())
+            .placeholder(R.mipmap.ic_launcher_round)
             .into(holder.binding.bookImageView)
 
         holder.binding.apply {

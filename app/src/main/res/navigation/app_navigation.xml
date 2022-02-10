@@ -6,10 +6,10 @@
     app:startDestination="@id/bookContainerFragment">
 
     <keep_state_fragment
-        android:id="@+id/favouriteFragment"
-        android:name="org.viroth.bookstore.app.view.favourite.FavouriteFragment"
-        android:label="favourite_fragment"
-        tools:layout="@layout/favourite_fragment" />
+        android:id="@+id/favouriteContainerFragment"
+        android:name="org.viroth.bookstore.app.view.favourite.FavouriteContainerFragment"
+        android:label="favourite_container_fragment"
+        tools:layout="@layout/favourite_container_fragment" />
 
     <keep_state_fragment
         android:id="@+id/managementFragment"
