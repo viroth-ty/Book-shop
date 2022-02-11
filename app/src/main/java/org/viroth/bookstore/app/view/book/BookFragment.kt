@@ -1,5 +1,6 @@
 package org.viroth.bookstore.app.view.book
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import android.view.*
@@ -16,7 +17,6 @@ import org.viroth.bookstore.app.R
 import org.viroth.bookstore.app.data.local.Constant
 import org.viroth.bookstore.app.databinding.BookFragmentBinding
 import org.viroth.bookstore.app.model.Query
-import org.viroth.bookstore.app.service.SQLiteDatabaseHandler
 import org.viroth.bookstore.app.util.Util
 
 
@@ -27,7 +27,6 @@ class BookFragment : Fragment() {
     private lateinit var bookAdapter: BookAdapter
     private val binding get() = _binding!!
     private var query: Query = Query(page = 1, title = "", author = "")
-    private lateinit var databaseHandler: SQLiteDatabaseHandler
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,13 +45,12 @@ class BookFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        databaseHandler = SQLiteDatabaseHandler(requireContext())
-
         initView()
         initEvent()
         initObservation()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun initView() {
         (activity as AppCompatActivity?)!!.setSupportActionBar(binding.toolbar)
         binding.searchInputText.requestFocus()
@@ -60,13 +58,19 @@ class BookFragment : Fragment() {
             val bundle = bundleOf(Constant.Book.BOOKING_ID to Util.findBookId(it.id))
             findNavController().navigate(R.id.action_bookFragment_to_bookDetailFragment, bundle)
         }, favouriteClickListener = {
-            val favouriteBooks = databaseHandler.getFavouriteBook()
-            if(it.id.equals(favouriteBooks.find { item -> item.id == it.id })) {
-                databaseHandler.addFavouriteNews(id = Util.findBookId(it.id), title = it.title!!)
+            if(it.isbn == viewModel.favouriteBooks.find { item -> item.isbn == it.isbn }?.isbn) {
+                if(it.isSave == 1) {
+                    viewModel.removeFromSqlite(hydraMember = it)
+                    bookAdapter.currentList.find { item -> item.isbn == it.isbn }?.isSave = 0
+                } else {
+                    viewModel.addToSqlite(hydraMember = it)
+                    bookAdapter.currentList.find { item -> item.isbn == it.isbn }?.isSave = 1
+                }
             } else {
-                databaseHandler.removeFavouriteNews(id = it.id)
-
+                viewModel.addToSqlite(hydraMember = it)
+                bookAdapter.currentList.find { item -> item.isbn == it.isbn }?.isSave = 1
             }
+            bookAdapter.notifyDataSetChanged()
         })
 
         val layoutManager = LinearLayoutManager(requireContext())
@@ -106,8 +110,8 @@ class BookFragment : Fragment() {
     }
 
     private fun initObservation() {
-        viewModel.books.observe(viewLifecycleOwner) {
-            bookAdapter.submitList(it.hydraMember)
+        viewModel.books.observe(viewLifecycleOwner) { books ->
+            bookAdapter.submitList(books)
             binding.loadingProgress.root.visibility = View.GONE
         }
         viewModel.searchBy.observe(viewLifecycleOwner) {

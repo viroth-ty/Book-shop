@@ -18,6 +18,7 @@ class BookAdapter(
         PostDiffCallback()
     ) {
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.book_item_view, parent, false)
@@ -26,7 +27,6 @@ class BookAdapter(
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         val item = getItem(position)
-        println("img ${item}")
         Glide.with(holder.binding.bookImageView)
             .load(R.drawable.img_placeholder)
             .centerCrop()

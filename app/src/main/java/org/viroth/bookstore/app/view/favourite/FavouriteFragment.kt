@@ -55,17 +55,17 @@ class FavouriteFragment : Fragment() {
             findNavController().navigate(R.id.action_favouriteFragment_to_bookDetailFragment, bundle)
         }, favouriteClickListener = {
             val favouriteBooks = databaseHandler.getFavouriteBook()
-            if(it.id.equals(favouriteBooks.find { item -> item.id == it.id })) {
-                databaseHandler.addFavouriteNews(id = Util.findBookId(it.id), title = it.title!!)
+            if(it.isbn!!.equals(favouriteBooks.find { item -> item.isbn == it.isbn })) {
+                databaseHandler.addFavouriteNews(id = it.id, isbn = it.isbn, title = it.title!!)
             } else {
-                databaseHandler.removeFavouriteNews(id = it.id)
-
+                databaseHandler.removeFavouriteNews(id = it.isbn)
             }
         })
 
         val layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = bookAdapter
+
     }
 
     private fun initEvent() {

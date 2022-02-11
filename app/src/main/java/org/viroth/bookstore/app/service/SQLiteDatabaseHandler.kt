@@ -21,6 +21,7 @@ class SQLiteDatabaseHandler(context: Context) : SQLiteOpenHelper(context, DATABA
          */
         const val KEY_ID = "id"
         const val KEY_BOOK_ID = "book_id"
+        const val KEY_BOOK_ISBN = "book_isbn"
         const val KEY_TITLE = "title"
         const val KEY_SAVE = "isSave"
 
@@ -30,6 +31,7 @@ class SQLiteDatabaseHandler(context: Context) : SQLiteOpenHelper(context, DATABA
         val createFavouriteTable = ("CREATE TABLE " + TABLE_FAVOURITE + "("
                 + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + KEY_BOOK_ID + " TEXT,"
+                + KEY_BOOK_ISBN + " TEXT,"
                 + KEY_TITLE + " TEXT,"
                 + KEY_SAVE + " INTEGER DEFAULT 1" + ")")
 
@@ -48,11 +50,13 @@ class SQLiteDatabaseHandler(context: Context) : SQLiteOpenHelper(context, DATABA
 
     fun addFavouriteNews(
         id: String,
+        isbn: String,
         title: String,
     ): Long {
         val db = this.writableDatabase
         val contentValues = ContentValues()
         contentValues.put(KEY_BOOK_ID, id)
+        contentValues.put(KEY_BOOK_ISBN, isbn)
         contentValues.put(KEY_TITLE, title)
         contentValues.put(KEY_SAVE, 1)
         return db.insert(TABLE_FAVOURITE, null, contentValues)
@@ -60,7 +64,7 @@ class SQLiteDatabaseHandler(context: Context) : SQLiteOpenHelper(context, DATABA
 
     fun removeFavouriteNews(id: String): Int {
         val db = this.writableDatabase
-        return db.delete(TABLE_FAVOURITE, "$KEY_BOOK_ID = $id", null)
+        return db.delete(TABLE_FAVOURITE, "$KEY_BOOK_ISBN = $id", null)
     }
 
 
@@ -78,14 +82,16 @@ class SQLiteDatabaseHandler(context: Context) : SQLiteOpenHelper(context, DATABA
         }
         var isSave: Int
         var bookID: String
+        var bookISBN: String
         var title: String
 
         if (cursor.moveToFirst()) {
             do {
                 bookID = cursor.getString(cursor.getColumnIndex(KEY_BOOK_ID))
+                bookISBN = cursor.getString(cursor.getColumnIndex(KEY_BOOK_ISBN))
                 title = cursor.getString(cursor.getColumnIndex(KEY_TITLE))
                 isSave = cursor.getInt(cursor.getColumnIndex(KEY_SAVE))
-                val emp = HydraMember(id = bookID, title = title, isSave = isSave)
+                val emp = HydraMember(id = bookID, title = title, isSave = isSave, isbn = bookISBN)
                 empList.add(emp)
             } while (cursor.moveToNext())
         }
