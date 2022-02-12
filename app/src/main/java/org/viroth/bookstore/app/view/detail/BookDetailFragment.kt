@@ -19,7 +19,6 @@ import org.viroth.bookstore.app.view.favourite.FavouriteViewModel
 class BookDetailFragment : Fragment() {
 
     private val viewModel: BookDetailViewModel by viewModels()
-    private val favouriteViewModel: FavouriteViewModel by activityViewModels()
     private var _binding: BookDetailFragmentBinding? = null
     private val binding get() = _binding!!
     private val controller: BookInfoController by lazy {

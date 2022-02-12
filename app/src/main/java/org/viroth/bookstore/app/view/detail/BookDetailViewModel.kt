@@ -17,8 +17,7 @@ class BookDetailViewModel : BaseViewModel() {
     val isFavourite: MutableLiveData<Boolean> = MutableLiveData()
     private var favouriteBooks: ArrayList<HydraMember> = arrayListOf()
 
-    private var databaseHandler: SQLiteDatabaseHandler =
-        SQLiteDatabaseHandler(BookApplication.context)
+    private var databaseHandler: SQLiteDatabaseHandler = SQLiteDatabaseHandler(BookApplication.context)
 
     init {
         favouriteBooks.addAll(databaseHandler.getFavouriteBook())
@@ -29,7 +28,6 @@ class BookDetailViewModel : BaseViewModel() {
         val book = bookInformation.value
         val hydraMember = HydraMember(id = book!!.id, isbn = book.isbn, title = book.title)
         if (book.isbn == favouriteBooks.find { item -> item.isbn == isbn }?.isbn) {
-            println("is save ${book.isSaved}")
             if (book.isSaved == 1) {
                 bookInformation.value?.isSaved = 0
                 databaseHandler.removeFavouriteNews(id = hydraMember.isbn!!)
