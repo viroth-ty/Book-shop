@@ -13,11 +13,10 @@ import org.viroth.bookstore.app.viewmodel.BaseViewModel
 
 class BookDetailViewModel : BaseViewModel() {
 
-    val bookInformation: MutableLiveData<BookInformation> = MutableLiveData()
-    val isFavourite: MutableLiveData<Boolean> = MutableLiveData()
-    private var favouriteBooks: ArrayList<HydraMember> = arrayListOf()
-
     private var databaseHandler: SQLiteDatabaseHandler = SQLiteDatabaseHandler(BookApplication.context)
+    val bookInformation: MutableLiveData<BookInformation> = MutableLiveData()
+    private var favouriteBooks: ArrayList<HydraMember> = arrayListOf()
+    val isFavourite: MutableLiveData<Boolean> = MutableLiveData()
 
     init {
         favouriteBooks.addAll(databaseHandler.getFavouriteBook())
