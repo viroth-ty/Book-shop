@@ -6,7 +6,7 @@ import org.viroth.bookstore.app.model.BookInformation
 import org.viroth.bookstore.app.model.Review
 import java.util.concurrent.CopyOnWriteArrayList
 
-class BookInfoController() : EpoxyController() {
+class BookInfoController : EpoxyController() {
 
     private var bookInformation: BookInformation? = null
     private val reviews: CopyOnWriteArrayList<Review> = CopyOnWriteArrayList()

@@ -11,8 +11,9 @@ import org.viroth.bookstore.app.databinding.BookItemViewBinding
 import org.viroth.bookstore.app.model.HydraMember
 
 class BookAdapter(
+    private val fromBookFragment: Boolean = false,
     private val clickListener: (HydraMember) -> Unit,
-    private val favouriteClickListener: (HydraMember) -> Unit
+    private val favouriteClickListener: ((HydraMember) -> Unit)? = null
 ) :
     androidx.recyclerview.widget.ListAdapter<HydraMember, BookAdapter.PostViewHolder>(
         PostDiffCallback()
@@ -38,9 +39,13 @@ class BookAdapter(
             clickListener.invoke(item)
         }
         holder.binding.favouriteButton.setOnClickListener {
-            favouriteClickListener.invoke(item)
+            favouriteClickListener?.invoke(item)
         }
-        holder.binding.favouriteButton.setBackgroundResource(if(item.isSave == 1) R.drawable.ic_active_favourite else R.drawable.ic_inactive_favourite)
+        if(fromBookFragment) {
+            holder.binding.favouriteButton.visibility = View.GONE
+        } else {
+            holder.binding.favouriteButton.setBackgroundResource(if(item.isSave == 1) R.drawable.ic_active_favourite else R.drawable.ic_inactive_favourite)
+        }
     }
 
     override fun getItemId(position: Int): Long = position.toLong()

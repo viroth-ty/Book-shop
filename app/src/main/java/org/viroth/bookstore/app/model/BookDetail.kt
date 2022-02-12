@@ -19,5 +19,6 @@ data class BookInformation (
     val description: String,
     val author: String,
     val publicationDate: String,
-    val reviews: List<Review>
+    val reviews: List<Review>,
+    var isSaved: Int = 0
 )

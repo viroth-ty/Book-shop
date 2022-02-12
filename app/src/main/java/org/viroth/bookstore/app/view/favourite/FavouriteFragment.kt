@@ -1,5 +1,6 @@
 package org.viroth.bookstore.app.view.favourite
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -49,17 +50,25 @@ class FavouriteFragment : Fragment() {
 
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun initView() {
         bookAdapter = BookAdapter(clickListener = {
             val bundle = bundleOf(Constant.Book.BOOKING_ID to Util.findBookId(it.id))
             findNavController().navigate(R.id.action_favouriteFragment_to_bookDetailFragment, bundle)
         }, favouriteClickListener = {
-            val favouriteBooks = databaseHandler.getFavouriteBook()
-            if(it.isbn!!.equals(favouriteBooks.find { item -> item.isbn == it.isbn })) {
-                databaseHandler.addFavouriteNews(id = it.id, isbn = it.isbn, title = it.title!!)
+            if(it.isbn == viewModel.favouriteBooks.find { item -> item.isbn == it.isbn }?.isbn) {
+                if(it.isSave == 1) {
+                    viewModel.removeFromSqlite(hydraMember = it)
+                    bookAdapter.currentList.find { item -> item.isbn == it.isbn }?.isSave = 0
+                } else {
+                    viewModel.addToSqlite(hydraMember = it)
+                    bookAdapter.currentList.find { item -> item.isbn == it.isbn }?.isSave = 1
+                }
             } else {
-                databaseHandler.removeFavouriteNews(id = it.isbn)
+                viewModel.addToSqlite(hydraMember = it)
+                bookAdapter.currentList.find { item -> item.isbn == it.isbn }?.isSave = 1
             }
+            bookAdapter.notifyDataSetChanged()
         })
 
         val layoutManager = LinearLayoutManager(requireContext())

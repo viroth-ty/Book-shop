@@ -24,7 +24,7 @@ class BookApplication : Application() {
         super.onCreate()
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
         context = this
-        appRepository = AppRepository(context = this, appService = appService)
+        appRepository = AppRepository(appService = appService)
     }
 
 }

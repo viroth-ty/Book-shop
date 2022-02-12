@@ -14,6 +14,7 @@ class Constant {
 
     object Book {
         const val BOOKING_ID = "book_id"
+        const val BOOKING_ISBN = "book_isbn"
     }
 
     object SearchBy {

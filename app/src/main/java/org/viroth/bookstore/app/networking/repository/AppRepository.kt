@@ -9,7 +9,6 @@ import org.viroth.bookstore.app.networking.http.ResultOf
 import org.viroth.bookstore.app.networking.http.safeApiCall
 
 class AppRepository(
-    private val context: Context? = null,
     private val appService: AppService
 ) {
     suspend fun getBook(query: Query): ResultOf<Book> {

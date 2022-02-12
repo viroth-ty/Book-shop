@@ -45,12 +45,11 @@
                     android:id="@+id/favouriteButton"
                     style="@style/Style.App.ImageButton"
                     android:layout_width="24dp"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="12dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    android:clickable="true"
                     android:contentDescription="@null"
-                    android:focusable="true"
                     android:src="@drawable/ic_inactive_favourite" />
 
             </RelativeLayout>
