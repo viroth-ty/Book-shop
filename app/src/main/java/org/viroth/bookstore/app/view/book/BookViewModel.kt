@@ -6,29 +6,32 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.viroth.bookstore.app.BookApplication
 import org.viroth.bookstore.app.data.local.Constant
-import org.viroth.bookstore.app.model.Book
 import org.viroth.bookstore.app.model.HydraMember
 import org.viroth.bookstore.app.model.Query
 import org.viroth.bookstore.app.networking.http.ResultOf
-import org.viroth.bookstore.app.service.SQLiteDatabaseHandler
-import org.viroth.bookstore.app.util.Util
 import org.viroth.bookstore.app.viewmodel.BaseViewModel
 
 class BookViewModel : BaseViewModel() {
+
     val searchBy: MutableLiveData<String> =  MutableLiveData(Constant.SearchBy.AUTHOR)
-    val books: MutableLiveData<List<HydraMember>> = MutableLiveData(arrayListOf())
+    val books: MutableLiveData<ArrayList<HydraMember>> = MutableLiveData(arrayListOf())
+    private val tempBooks: ArrayList<HydraMember> = ArrayList()
 
     fun updateSearchBy(newSearchBy: String) {
         searchBy.postValue(newSearchBy)
     }
 
-    fun getBook(query: Query) {
-        if(books.value?.isEmpty() == true) {
+    fun getBook(
+        query: Query,
+        isSearchingOrRefreshing: Boolean = false)
+    {
+        if(books.value?.isEmpty() == true || isSearchingOrRefreshing) {
             viewModelScope.launch(Dispatchers.IO) {
                 loading.postValue(true)
                 when (val result = BookApplication.appRepository.getBook(query = query)) {
                     is ResultOf.Success -> {
-                        books.postValue(result.data.hydraMember)
+                        tempBooks.addAll(result.data.hydraMember)
+                        books.postValue(tempBooks)
                         loading.postValue(true)
                     }
                     is ResultOf.Error -> {

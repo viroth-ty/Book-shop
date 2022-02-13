@@ -7,9 +7,9 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 class DateUtil {
+
     companion object {
 
-        @SuppressLint("SimpleDateFormat")
         @RequiresApi(Build.VERSION_CODES.O)
         fun formatTimeToStandard(source: String): String {
             val sourceFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")

@@ -18,7 +18,7 @@ data class Book (
     val type: String,
 
    @SerializedName("hydra:member")
-    val hydraMember: List<HydraMember>,
+    val hydraMember: ArrayList<HydraMember>,
 
    @SerializedName("hydra:totalItems")
     val hydraTotalItems: Long,
@@ -75,7 +75,7 @@ data class HydraSearch (
     val hydraVariableRepresentation: String,
 
    @SerializedName("hydra:mapping")
-    val hydraMapping: List<HydraMapping>
+    val hydraMapping: ArrayList<HydraMapping>
 )
 
 @Serializable

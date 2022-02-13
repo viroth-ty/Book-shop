@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="Theme.BookStore" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Theme.BookStore" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 
         <item name="colorPrimary">#BAA786</item>
         <item name="colorPrimaryVariant">@color/nashville</item>
@@ -43,6 +43,11 @@
         <item name="android:textSize">24sp</item>
     </style>
 
+    <style name="Style.App.H3" parent="@style/Widget.MaterialComponents.TextView">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="Style.App.TextInputLayout" parent="@style/Widget.MaterialComponents.TextInputLayout.FilledBox">
         <item name="android:textColor">@color/black</item>
         <item name="cardCornerRadius">4dp</item>
@@ -58,5 +63,5 @@
     </style>
 
     <dimen name="item_card_corner">4dp</dimen>
-    <string name="search">Search any books....</string>
+
 </resources>

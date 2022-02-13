@@ -1,11 +1,10 @@
 package org.viroth.bookstore.app.util
 
-import org.viroth.bookstore.app.R
+import android.graphics.Color
 import java.util.*
 
 
-class Util {
-    companion object {
-        fun findBookId(resource: String): String = resource.substring(startIndex = 7)
-    }
+object Util {
+    fun findBookId(resource: String): String = resource.substring(startIndex = 7)
+    fun generateColorFromString(seed: String): Int = Color.parseColor("#FF%06X".format(0xFFFFFF and seed.hashCode()))
 }

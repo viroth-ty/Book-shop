@@ -8,9 +8,9 @@ import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.bumptech.glide.Glide
 import org.viroth.bookstore.app.R
-import org.viroth.bookstore.app.databinding.ComponentBookItemBinding
+import org.viroth.bookstore.app.databinding.ComponentDetailBookItemBinding
 
-@EpoxyModelClass(layout = R.layout.component_book_item)
+@EpoxyModelClass(layout = R.layout.component_detail_book_item)
 abstract class BookItemModel : EpoxyModelWithHolder<BookItemModel.BookItemModelViewHolder>() {
 
     @field:EpoxyAttribute
@@ -48,11 +48,11 @@ abstract class BookItemModel : EpoxyModelWithHolder<BookItemModel.BookItemModelV
 
     class BookItemModelViewHolder : EpoxyHolder() {
 
-        lateinit var binding: ComponentBookItemBinding
+        lateinit var binding: ComponentDetailBookItemBinding
             private set
 
         override fun bindView(itemView: View) {
-            binding = ComponentBookItemBinding.bind(itemView)
+            binding = ComponentDetailBookItemBinding.bind(itemView)
         }
     }
 }

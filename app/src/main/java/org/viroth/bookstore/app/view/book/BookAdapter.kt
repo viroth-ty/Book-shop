@@ -7,11 +7,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import org.viroth.bookstore.app.R
-import org.viroth.bookstore.app.databinding.BookItemViewBinding
+import org.viroth.bookstore.app.databinding.ComponentBookItemBinding
 import org.viroth.bookstore.app.model.HydraMember
 
 class BookAdapter(
-    private val fromBookFragment: Boolean = false,
     private val clickListener: (HydraMember) -> Unit,
     private val favouriteClickListener: ((HydraMember) -> Unit)? = null
 ) :
@@ -22,7 +21,7 @@ class BookAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.book_item_view, parent, false)
+        val view = inflater.inflate(R.layout.component_detail_book_item, parent, false)
         return PostViewHolder(view)
     }
 
@@ -35,23 +34,19 @@ class BookAdapter(
             .into(holder.binding.bookImageView)
         holder.binding.bookAuthorTextView.text = item.author
         holder.binding.bookTitleTextView.text = item.title
-        holder.binding.root.setOnClickListener {
-            clickListener.invoke(item)
-        }
+        holder.binding.favouriteButton.visibility = View.GONE
         holder.binding.favouriteButton.setOnClickListener {
             favouriteClickListener?.invoke(item)
         }
-        if(fromBookFragment) {
-            holder.binding.favouriteButton.visibility = View.GONE
-        } else {
-            holder.binding.favouriteButton.setBackgroundResource(if(item.isSave == 1) R.drawable.ic_active_favourite else R.drawable.ic_inactive_favourite)
+        holder.binding.root.setOnClickListener {
+            clickListener.invoke(item)
         }
     }
 
     override fun getItemId(position: Int): Long = position.toLong()
 
     class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var binding = BookItemViewBinding.bind(itemView)
+        var binding = ComponentBookItemBinding.bind(itemView)
     }
 
     class PostDiffCallback : DiffUtil.ItemCallback<HydraMember>() {

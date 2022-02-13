@@ -9,7 +9,6 @@ import org.viroth.bookstore.app.R
 
 class BookContainerFragment : Fragment() {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -20,4 +19,5 @@ class BookContainerFragment : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_book_container, container, false)
     }
+
 }

@@ -1,5 +1,7 @@
 package org.viroth.bookstore.app.data.local
-class Constant {
+
+object Constant {
+
     object Seat {
         const val AVAILABLE = "available"
         const val UNAVAILABLE = "unavailable"
@@ -21,4 +23,8 @@ class Constant {
         const val AUTHOR = "author"
         const val TITLE = "title"
     }
+}
+
+
+fun m() {
 }

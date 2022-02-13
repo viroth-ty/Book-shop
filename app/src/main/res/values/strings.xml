@@ -1,6 +1,5 @@
 <resources>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home">Home</string>
     <string name="management">Management</string>
@@ -13,4 +12,8 @@
     <string name="title">Title</string>
     <string name="searchBy">Search any books by %1s</string>
     <string name="empty_data">Empty data</string>
+    <string name="library">Library</string>
+    <string name="top_book">Top Book</string>
+    <string name="search">Search any books....</string>
+
 </resources>

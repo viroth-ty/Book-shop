@@ -61,12 +61,12 @@
         android:layout_height="match_parent"
         android:layout_below="@id/appbar">
 
-        <androidx.recyclerview.widget.RecyclerView
+        <com.airbnb.epoxy.EpoxyRecyclerView
             android:id="@+id/bookRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:itemCount="10"
-            tools:listitem="@layout/book_item_view" />
+            tools:listitem="@layout/component_detail_book_item" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

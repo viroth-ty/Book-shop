@@ -90,6 +90,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.2'
     debugImplementation "com.github.chuckerteam.chucker:library:$chucker_version"
     releaseImplementation "com.github.chuckerteam.chucker:library-no-op:$chucker_version"
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.8.1'
 
     //view
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
