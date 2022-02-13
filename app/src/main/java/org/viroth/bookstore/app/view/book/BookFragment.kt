@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.*
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -129,6 +130,20 @@ class BookFragment : Fragment() {
         viewModel.searchBy.observe(viewLifecycleOwner) {
             binding.textField.placeholderText =
                 String.format(requireContext().getString(R.string.searchBy), it)
+        }
+
+        viewModel.error.observe(viewLifecycleOwner) {
+            if(it) {
+                Toast.makeText(requireContext(), "${viewModel.errorMessage.value}", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        viewModel.loading.observe(viewLifecycleOwner) {
+            binding.loadingProgress.root.visibility = if(it) View.VISIBLE else View.GONE
+        }
+
+        viewModel.empty.observe(viewLifecycleOwner) {
+            binding.emptyView.root.visibility = if(it) View.VISIBLE else View.GONE
         }
 
     }

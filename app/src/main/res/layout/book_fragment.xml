@@ -78,4 +78,12 @@
         layout="@layout/component_loading"
         android:visibility="gone"/>
 
+    <include
+        android:id="@+id/emptyView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        layout="@layout/component_empty"
+        android:visibility="gone"/>
+
 </RelativeLayout>

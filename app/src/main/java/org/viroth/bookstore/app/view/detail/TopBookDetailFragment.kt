@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.seanghay.statusbar.statusBar
 import org.viroth.bookstore.app.R
 import org.viroth.bookstore.app.data.local.Constant
@@ -46,6 +47,11 @@ class TopBookDetailFragment : Fragment() {
     }
 
     private fun initEvent() {
+
+        binding.backButton.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
         val id = requireArguments().getInt(Constant.Book.BOOKING_ID)
         viewModel.getBook(id = id)
     }

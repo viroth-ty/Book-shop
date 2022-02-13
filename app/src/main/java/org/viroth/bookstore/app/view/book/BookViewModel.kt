@@ -28,13 +28,17 @@ class BookViewModel : BaseViewModel() {
         isSearchingOrRefreshing: Boolean = false)
     {
         if((books.value?.isEmpty() == true && topBooks.value?.isEmpty() == true) || isSearchingOrRefreshing) {
-
             viewModelScope.launch(Dispatchers.IO) {
                 loading.postValue(true)
                 when (val result = BookApplication.appRepository.book(query = query)) {
                     is ResultOf.Success -> {
+                        if(result.data.hydraMember.isEmpty()) {
+                            empty.postValue(true)
+                        } else {
+                            empty.postValue(false)
+                        }
                         books.postValue(result.data.hydraMember)
-                        loading.postValue(true)
+                        loading.postValue(false)
                     }
                     is ResultOf.Error -> {
                         loading.postValue(false)
@@ -52,7 +56,7 @@ class BookViewModel : BaseViewModel() {
                 when (val result = BookApplication.appRepository.topBook(query = query)) {
                     is ResultOf.Success -> {
                         topBooks.postValue(result.data.hydraMember)
-                        loading.postValue(true)
+                        loading.postValue(false)
                     }
                     is ResultOf.Error -> {
                         loading.postValue(false)

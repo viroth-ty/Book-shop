@@ -35,6 +35,7 @@ class BookController(
     override fun buildModels() {
 
         if ( books.isNotEmpty() && topBooks.isNotEmpty()) {
+
             val topBookModel: ArrayList<BookItemModel_> = ArrayList()
             topBooks.forEach { item ->
                 topBookModel.add(

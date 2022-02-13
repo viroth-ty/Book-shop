@@ -81,6 +81,7 @@ class BookDetailFragment : Fragment() {
         viewModel.isFavourite.observe(viewLifecycleOwner) { isFavourite ->
             binding.favouriteButton.setImageResource(if (isFavourite) R.drawable.ic_active_favourite else R.drawable.ic_inactive_favourite)
         }
+
     }
 
     override fun onDestroy() {
