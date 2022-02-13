@@ -9,6 +9,8 @@ Book shop is app that collect all books, you can
 
 **2. App Archetichure**
 
+This app is single activity, means that there is only **Activity** and other views are fragment.
+
 - MVVM (Model, View, ViewModel)
 
   This is using Jetpack library, included :
