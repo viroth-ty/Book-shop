@@ -5,7 +5,7 @@
         <item name="colorPrimary">#BAA786</item>
         <item name="colorPrimaryVariant">@color/nashville</item>
         <item name="colorOnPrimary">@color/white</item>
-
+        
         <item name="android:statusBarColor">@color/white</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
 
@@ -15,7 +15,12 @@
         <item name="tabRippleColor">?attr/colorPrimary</item>
         <item name="toolbarStyle">@style/Style.App.Toolbar</item>
         <item name="android:textColorSecondary">@color/white</item>
+        <item name="materialCardViewStyle">@style/Style.App.CordView</item>
 
+    </style>
+
+    <style name="Style.App.CordView" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">8dp</item>
     </style>
 
     <style name="Style.App.CornerSize" parent="">

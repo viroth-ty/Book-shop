@@ -17,6 +17,13 @@
             app:exitAnim="@anim/exit_to_left"
             app:popEnterAnim="@anim/enter_from_left"
             app:popExitAnim="@anim/exit_to_right" />
+        <action
+            android:id="@+id/action_bookFragment_to_topBookDetailFragment"
+            app:destination="@id/topBookDetailFragment"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right"/>
     </fragment>
 
     <fragment
@@ -24,5 +31,11 @@
         android:name="org.viroth.bookstore.app.view.detail.BookDetailFragment"
         android:label="book_detail_fragment"
         tools:layout="@layout/book_detail_fragment" />
+
+    <fragment
+        android:id="@+id/topBookDetailFragment"
+        android:name="org.viroth.bookstore.app.view.detail.TopBookDetailFragment"
+        android:label="TopBookDetailFragment"
+        tools:layout="@layout/top_book_detail_fragment"/>
 
 </navigation>

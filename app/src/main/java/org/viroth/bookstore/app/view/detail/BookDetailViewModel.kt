@@ -57,15 +57,17 @@ class BookDetailViewModel : BaseViewModel() {
                             isFavourite.postValue(false)
                         }
                         bookInformation.postValue(result.data)
-                        loading.postValue(true)
+                        loading.postValue(false)
                     }
                     is ResultOf.Error -> {
-                        loading.postValue(true)
+                        loading.postValue(false)
                         error.postValue(true)
+                        print(result.error?.message)
                         errorMessage.postValue(result.error?.message)
                     }
 
                     is ResultOf.NetworkError -> {
+                        loading.postValue(false)
                         error.postValue(true)
                         errorMessage.postValue("Network has problem, Please check and try again!")
                     }

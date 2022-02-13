@@ -16,5 +16,7 @@
     <string name="top_book">Top Book</string>
     <string name="search">Search any books....</string>
     <string name="author_by">By 1%s</string>
+    <string name="borrowed">Borrow 1%s times</string>
+    <string name="top_book_detail">Top Book Detail</string>
 
 </resources>

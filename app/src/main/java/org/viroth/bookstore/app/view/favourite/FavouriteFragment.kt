@@ -53,14 +53,16 @@ class FavouriteFragment : Fragment() {
     @SuppressLint("NotifyDataSetChanged")
     private fun initView() {
         bookAdapter = BookAdapter(clickListener = {
-            val bundle = bundleOf(Constant.Book.BOOKING_ID to Util.findBookId(it.id))
+            val bundle = bundleOf(
+                Constant.Book.BOOKING_ID to Util.findBookId(it.id),
+                Constant.Book.BOOKING_ISBN to it.isbn
+            )
             findNavController().navigate(R.id.action_favouriteFragment_to_bookDetailFragment, bundle)
         })
 
         val layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = bookAdapter
-
     }
 
     private fun initEvent() {
@@ -73,6 +75,8 @@ class FavouriteFragment : Fragment() {
             bookAdapter.submitList(it)
             binding.loadingProgress.root.visibility = View.GONE
         }
+        viewModel.empty.observe(viewLifecycleOwner) {
+            binding.emptyView.root.visibility = if(it) View.VISIBLE else View.GONE
+        }
     }
-
 }

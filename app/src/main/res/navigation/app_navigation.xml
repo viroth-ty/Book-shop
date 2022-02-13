@@ -12,18 +12,6 @@
         tools:layout="@layout/favourite_container_fragment" />
 
     <keep_state_fragment
-        android:id="@+id/managementFragment"
-        android:name="org.viroth.bookstore.app.view.management.ManagementFragment"
-        android:label="management_fragment"
-        tools:layout="@layout/management_fragment" />
-
-    <keep_state_fragment
-        android:id="@+id/profileFragment"
-        android:name="org.viroth.bookstore.app.view.profile.ProfileFragment"
-        android:label="profile_fragment"
-        tools:layout="@layout/profile_fragment" />
-
-    <keep_state_fragment
         android:id="@+id/bookContainerFragment"
         android:name="org.viroth.bookstore.app.view.book.BookContainerFragment"
         android:label="fragment_book_container"

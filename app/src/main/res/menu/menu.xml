@@ -11,14 +11,4 @@
         android:icon="@drawable/ic_favourite"
         android:title="@string/favourite" />
 
-    <item
-        android:id="@+id/managementFragment"
-        android:icon="@drawable/ic_book"
-        android:title="@string/management" />
-
-    <item
-        android:id="@+id/profileFragment"
-        android:icon="@drawable/ic_profile"
-        android:title="@string/profile" />
-
 </menu>

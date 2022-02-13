@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.seanghay.statusbar.statusBar
 import org.viroth.bookstore.app.R
@@ -20,19 +20,30 @@ import org.viroth.bookstore.app.util.Util
 
 class BookFragment : Fragment() {
 
-    private val viewModel: BookViewModel by activityViewModels()
+    private val viewModel: BookViewModel by viewModels()
     private var _binding: BookFragmentBinding? = null
     private val binding get() = _binding!!
     private var query: Query = Query(page = 1, title = "", author = "")
     private val controller: BookController by lazy {
-
-        BookController(itemClickListener = {
-            val bundle = bundleOf(
-                Constant.Book.BOOKING_ID to Util.findBookId(it.id),
-                Constant.Book.BOOKING_ISBN to it.isbn
-            )
-            findNavController().navigate(R.id.action_bookFragment_to_bookDetailFragment, bundle)
-        })
+        BookController(
+            itemClickListener = {
+                val bundle = bundleOf(
+                    Constant.Book.BOOKING_ID to Util.findBookId(it.id),
+                    Constant.Book.BOOKING_ISBN to it.isbn
+                )
+                findNavController().navigate(R.id.action_bookFragment_to_bookDetailFragment,
+                    bundle
+                )
+            }, topItemClickListener = {
+                val bundle = bundleOf(
+                    Constant.Book.BOOKING_ID to it.hydraMemberID,
+                )
+                findNavController().navigate(
+                    R.id.action_bookFragment_to_topBookDetailFragment,
+                    bundle
+                )
+            }
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,7 +69,6 @@ class BookFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.bookRecyclerView.setController(controller = controller)
 
         initView()
         initEvent()
@@ -68,6 +78,8 @@ class BookFragment : Fragment() {
     private fun initView() {
         (activity as AppCompatActivity?)!!.setSupportActionBar(binding.toolbar)
         binding.searchInputText.requestFocus()
+        binding.bookRecyclerView.setController(controller = controller)
+
     }
 
     private fun initEvent() {
@@ -105,12 +117,18 @@ class BookFragment : Fragment() {
 
     private fun initObservation() {
         viewModel.books.observe(viewLifecycleOwner) { books ->
-            controller.submitList(books)
+            controller.submitBook(books)
+            binding.loadingProgress.root.visibility = View.GONE
+        }
+
+        viewModel.topBooks.observe(viewLifecycleOwner) { books ->
+            controller.submitTopBook(books)
             binding.loadingProgress.root.visibility = View.GONE
         }
 
         viewModel.searchBy.observe(viewLifecycleOwner) {
-            binding.textField.placeholderText = String.format(requireContext().getString(R.string.searchBy), it)
+            binding.textField.placeholderText =
+                String.format(requireContext().getString(R.string.searchBy), it)
         }
 
     }
