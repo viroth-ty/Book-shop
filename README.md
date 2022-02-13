@@ -1,6 +1,6 @@
 # Book-store
 
-**1. App purpose**
+Book shop
 - Show book that admin or user book seller have post
 - Show top book according
 - Show book detail includde, date release, description about book, book reviews
