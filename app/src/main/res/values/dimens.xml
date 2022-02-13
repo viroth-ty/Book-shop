@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="menu_item_margin">8dp</dimen>
+    <dimen name="item_card_corner">4dp</dimen>
     <dimen name="item_padding_4">4dp</dimen>
     <dimen name="menu_item_padding">8dp</dimen>
     <dimen name="item_padding_2">2dp</dimen>
+    <dimen name="lottie_size">220dp</dimen>
+    <dimen name="card_padding">24dp</dimen>
+
 </resources>

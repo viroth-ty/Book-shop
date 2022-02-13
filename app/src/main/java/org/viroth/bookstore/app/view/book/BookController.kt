@@ -5,9 +5,7 @@ import com.airbnb.epoxy.carousel
 import com.airbnb.epoxy.group
 import org.viroth.bookstore.app.BookApplication
 import org.viroth.bookstore.app.R
-import org.viroth.bookstore.app.component.loading
 import org.viroth.bookstore.app.model.HydraMember
-import org.viroth.bookstore.app.model.TopBook
 import org.viroth.bookstore.app.model.TopBookHydraMember
 import org.viroth.bookstore.app.util.Util
 import java.util.concurrent.CopyOnWriteArrayList
@@ -85,10 +83,6 @@ class BookController(
                         this@BookController.itemClickListener.invoke(item)
                     }
                 }
-            }
-        } else {
-            loading {
-                id("loading")
             }
         }
     }
