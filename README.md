@@ -17,4 +17,4 @@ Book shop is app that collect all books, you can
 
 
 - Other Library
-  * [airbnb/epoxy](https://github.com/airbnb/epoxy/)
+  * [airbnb/epoxy](https://github.com/airbnb/epoxy/) for complex view in recyclerview
