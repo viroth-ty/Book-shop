@@ -45,7 +45,10 @@ data class HydraMember (
     var url: Int? = null,
     val publicationDate: String? = null,
     val reviews: ArrayList<Review> = arrayListOf(),
-    var isSave: Int = 0
+    var isSave: Int = 0,
+    val part: String? = null,
+    val place: String? = null,
+    val borrowCount: Int? = null,
 ) {
     init {
         url = R.drawable.img_placeholder

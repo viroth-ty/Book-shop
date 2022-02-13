@@ -6,12 +6,11 @@ import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyHolder
 import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
-import com.bumptech.glide.Glide
 import org.viroth.bookstore.app.R
 import org.viroth.bookstore.app.databinding.ComponentDetailBookItemBinding
 
-@EpoxyModelClass(layout = R.layout.component_detail_book_item)
-abstract class BookItemModel : EpoxyModelWithHolder<BookItemModel.BookItemModelViewHolder>() {
+@EpoxyModelClass
+abstract class BookDetailItemModel : EpoxyModelWithHolder<BookDetailItemModel.BookItemModelViewHolder>() {
 
     @field:EpoxyAttribute
     var title: String? = null
@@ -28,21 +27,25 @@ abstract class BookItemModel : EpoxyModelWithHolder<BookItemModel.BookItemModelV
     @field:EpoxyAttribute
     var description: String? = null
 
+    @field:EpoxyAttribute
+    var backgroundColor: Int? = null
+
+    @field:EpoxyAttribute
+    var titlePlaceHolder: String? = null
+
+    override fun getDefaultLayout(): Int = R.layout.component_detail_book_item
+
     @SuppressLint("SetTextI18n")
     override fun bind(holder: BookItemModelViewHolder) {
         super.bind(holder)
 
-        Glide.with(holder.binding.bookImageView)
-            .load(R.drawable.img_placeholder)
-            .centerCrop()
-            .placeholder(R.mipmap.ic_launcher_round)
-            .into(holder.binding.bookImageView)
-
         holder.binding.apply {
             bookTitleTextView.text = title
-            bookAuthorTextView.text = "By $author"
+            bookAuthorTextView.text = author
             bookPublishDateTextView.text = date
             bookDescriptionTextView.text = description
+            bookImageView.setBackgroundColor(backgroundColor!!)
+            bookPlaceholderTextView.text = titlePlaceHolder
         }
     }
 

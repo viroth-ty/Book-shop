@@ -1,6 +1,5 @@
 package org.viroth.bookstore.app.networking.repository
 
-import android.content.Context
 import org.viroth.bookstore.app.model.Book
 import org.viroth.bookstore.app.model.BookInformation
 import org.viroth.bookstore.app.model.Query
@@ -11,9 +10,9 @@ import org.viroth.bookstore.app.networking.http.safeApiCall
 class AppRepository(
     private val appService: AppService
 ) {
-    suspend fun getBook(query: Query): ResultOf<Book> {
+    suspend fun book(query: Query): ResultOf<Book> {
         return safeApiCall {
-            appService.getBook(
+            appService.book(
                 page = query.page,
                 title = query.title,
                 author = query.author
@@ -21,9 +20,15 @@ class AppRepository(
         }
     }
 
-    suspend fun getBookInformation(bookId: String): ResultOf<BookInformation> {
+    suspend fun bookInformation(bookId: String): ResultOf<BookInformation> {
         return safeApiCall {
-            appService.getBookInformation(bookId = bookId)
+            appService.bookInformation(bookId = bookId)
+        }
+    }
+
+    suspend fun topBook(query: Query): ResultOf<Book>  {
+        return safeApiCall {
+            appService.topBook(page = query.page)
         }
     }
 }

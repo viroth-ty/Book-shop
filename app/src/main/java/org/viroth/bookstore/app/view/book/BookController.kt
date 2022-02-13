@@ -6,6 +6,7 @@ import com.airbnb.epoxy.group
 import org.viroth.bookstore.app.BookApplication
 import org.viroth.bookstore.app.R
 import org.viroth.bookstore.app.model.HydraMember
+import org.viroth.bookstore.app.util.Util
 import java.util.concurrent.CopyOnWriteArrayList
 
 class BookController(
@@ -37,6 +38,7 @@ class BookController(
                         .id("top_book_${item.isbn}")
                         .author(item.author)
                         .title(item.title)
+                        .titlePlaceholderTextView(Util.splitTheWord(item.title!!))
                         .clickListener {
                             itemClickListener(item)
                         }

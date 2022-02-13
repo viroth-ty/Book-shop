@@ -55,20 +55,6 @@ class FavouriteFragment : Fragment() {
         bookAdapter = BookAdapter(clickListener = {
             val bundle = bundleOf(Constant.Book.BOOKING_ID to Util.findBookId(it.id))
             findNavController().navigate(R.id.action_favouriteFragment_to_bookDetailFragment, bundle)
-        }, favouriteClickListener = {
-            if(it.isbn == viewModel.favouriteBooks.find { item -> item.isbn == it.isbn }?.isbn) {
-                if(it.isSave == 1) {
-                    viewModel.removeFromSqlite(hydraMember = it)
-                    bookAdapter.currentList.find { item -> item.isbn == it.isbn }?.isSave = 0
-                } else {
-                    viewModel.addToSqlite(hydraMember = it)
-                    bookAdapter.currentList.find { item -> item.isbn == it.isbn }?.isSave = 1
-                }
-            } else {
-                viewModel.addToSqlite(hydraMember = it)
-                bookAdapter.currentList.find { item -> item.isbn == it.isbn }?.isSave = 1
-            }
-            bookAdapter.notifyDataSetChanged()
         })
 
         val layoutManager = LinearLayoutManager(requireContext())

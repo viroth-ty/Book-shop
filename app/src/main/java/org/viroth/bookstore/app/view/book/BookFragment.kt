@@ -104,7 +104,6 @@ class BookFragment : Fragment() {
     }
 
     private fun initObservation() {
-
         viewModel.books.observe(viewLifecycleOwner) { books ->
             controller.submitList(books)
             binding.loadingProgress.root.visibility = View.GONE

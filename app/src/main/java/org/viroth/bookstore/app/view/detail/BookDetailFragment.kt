@@ -48,7 +48,6 @@ class BookDetailFragment : Fragment() {
     }
 
     private fun initView() {
-
         binding.bookDetailRecyclerView.apply {
             layoutManager = layoutManager
             setController(controller = controller)

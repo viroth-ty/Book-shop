@@ -3,20 +3,20 @@ package org.viroth.bookstore.app.util
 import android.annotation.SuppressLint
 import android.os.Build
 import androidx.annotation.RequiresApi
+import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.*
 
-class DateUtil {
-
-    companion object {
-
-        @RequiresApi(Build.VERSION_CODES.O)
-        fun formatTimeToStandard(source: String): String {
-            val sourceFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-            val timeFormatter = DateTimeFormatter.ofPattern("hh:mm a")
-            val date = LocalDateTime.parse(source, sourceFormatter)
-            return timeFormatter.format(date)
+object DateUtil {
+    @SuppressLint("SimpleDateFormat")
+    fun formatTimeToStandard(source: String): String {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd")
+            source.format(formatter)
+        } else {
+            val formatter = SimpleDateFormat("yyyy-MMM-dd")
+            formatter.format(source)
         }
-
     }
 }

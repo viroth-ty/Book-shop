@@ -27,9 +27,9 @@
                     android:id="@+id/bookImageView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/black"
                     android:scaleType="centerCrop"
-                    app:shapeAppearance="@style/Style.App.CornerSize" />
+                    app:shapeAppearance="@style/Style.App.CornerSize"
+                    tools:src="@tools:sample/avatars" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/bookPlaceholderTextView"
@@ -43,7 +43,7 @@
 
             </RelativeLayout>
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/favouriteButton"
                 android:layout_width="32dp"
                 android:layout_height="32dp"

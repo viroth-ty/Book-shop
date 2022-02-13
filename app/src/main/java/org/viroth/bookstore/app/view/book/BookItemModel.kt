@@ -21,6 +21,9 @@ abstract class BookItemModel : EpoxyModelWithHolder<BookItemModel.BookItemViewMo
     var title: String? = null
 
     @field:EpoxyAttribute
+    var titlePlaceholderTextView: String? = null
+
+    @field:EpoxyAttribute
     var clickListener: (() -> Unit)? = null
 
     override fun shouldSaveViewState(): Boolean {
@@ -29,14 +32,15 @@ abstract class BookItemModel : EpoxyModelWithHolder<BookItemModel.BookItemViewMo
 
     override fun bind(holder: BookItemViewModel) {
         super.bind(holder)
+
         holder.binding.bookAuthorTextView.text = author
         holder.binding.bookTitleTextView.text = title
-        holder.binding.favouriteButton.visibility = View.GONE
         holder.binding.bookImageView.setBackgroundColor(Util.generateColorFromString(seed = title!!))
-//        holder.binding.bookPlaceholderTextView.text =
+        holder.binding.bookPlaceholderTextView.text = titlePlaceholderTextView
         holder.binding.root.setOnClickListener {
             clickListener?.invoke()
         }
+
     }
 
     class BookItemViewModel : EpoxyHolder() {

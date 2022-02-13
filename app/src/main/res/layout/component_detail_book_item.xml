@@ -23,17 +23,35 @@
             android:orientation="vertical"
             android:padding="8dp">
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/bookImageView"
-                android:layout_width="120dp"
+            <RelativeLayout
+                android:id="@+id/bookImageViewLayout"
+                android:layout_width="160dp"
                 android:layout_height="0dp"
-                android:scaleType="centerCrop"
                 app:layout_constraintDimensionRatio="3:4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:shapeAppearance="@style/Style.App.CornerSize"
-                tools:src="@tools:sample/avatars" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/bookImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    app:shapeAppearance="@style/Style.App.CornerSize"
+                    tools:src="@tools:sample/avatars" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/bookPlaceholderTextView"
+                    style="@style/Style.App.H3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    tools:text="@tools:sample/first_names" />
+
+            </RelativeLayout>
+
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/bookTitleTextView"
@@ -47,7 +65,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/bookImageView"
+                app:layout_constraintTop_toBottomOf="@id/bookImageViewLayout"
                 tools:text="@tools:sample/first_names" />
 
             <com.google.android.material.textview.MaterialTextView

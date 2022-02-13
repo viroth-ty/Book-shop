@@ -47,7 +47,7 @@ class BookDetailViewModel : BaseViewModel() {
     fun getBookInformation(bookId: String, isbn: String) {
         if(bookInformation.value == null) {
             viewModelScope.launch(Dispatchers.IO) {
-                when (val result = BookApplication.appRepository.getBookInformation(bookId = bookId)) {
+                when (val result = BookApplication.appRepository.bookInformation(bookId = bookId)) {
                     is ResultOf.Success -> {
                         if (isbn == favouriteBooks.find { item -> item.isbn == isbn }?.isbn) {
                             result.data.isSaved = 1

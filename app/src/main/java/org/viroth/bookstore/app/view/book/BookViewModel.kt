@@ -28,7 +28,7 @@ class BookViewModel : BaseViewModel() {
         if(books.value?.isEmpty() == true || isSearchingOrRefreshing) {
             viewModelScope.launch(Dispatchers.IO) {
                 loading.postValue(true)
-                when (val result = BookApplication.appRepository.getBook(query = query)) {
+                when (val result = BookApplication.appRepository.book(query = query)) {
                     is ResultOf.Success -> {
                         tempBooks.addAll(result.data.hydraMember)
                         books.postValue(tempBooks)

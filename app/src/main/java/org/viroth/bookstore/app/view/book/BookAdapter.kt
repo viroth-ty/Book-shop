@@ -5,10 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import org.viroth.bookstore.app.R
 import org.viroth.bookstore.app.databinding.ComponentBookItemBinding
 import org.viroth.bookstore.app.model.HydraMember
+import org.viroth.bookstore.app.util.Util
 
 class BookAdapter(
     private val clickListener: (HydraMember) -> Unit,
@@ -18,36 +17,32 @@ class BookAdapter(
         PostDiffCallback()
     ) {
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.component_detail_book_item, parent, false)
-        return PostViewHolder(view)
+       val binding = ComponentBookItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+
+        return PostViewHolder(binding.root, binding)
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         val item = getItem(position)
-        Glide.with(holder.binding.bookImageView)
-            .load(R.drawable.img_placeholder)
-            .centerCrop()
-            .placeholder(R.mipmap.ic_launcher_round)
-            .into(holder.binding.bookImageView)
-        holder.binding.bookAuthorTextView.text = item.author
-        holder.binding.bookTitleTextView.text = item.title
-        holder.binding.favouriteButton.visibility = View.GONE
-        holder.binding.favouriteButton.setOnClickListener {
-            favouriteClickListener?.invoke(item)
-        }
-        holder.binding.root.setOnClickListener {
-            clickListener.invoke(item)
+        holder.binding.apply {
+            bookImageView.setBackgroundColor(Util.generateColorFromString(item.title!!))
+            bookPlaceholderTextView.text = Util.splitTheWord(item.title)
+            bookAuthorTextView.text = item.author
+            bookTitleTextView.text = item.title
+            favouriteButton.visibility = View.GONE
+            favouriteButton.setOnClickListener {
+                favouriteClickListener?.invoke(item)
+            }
+            root.setOnClickListener {
+                clickListener.invoke(item)
+            }
         }
     }
 
     override fun getItemId(position: Int): Long = position.toLong()
 
-    class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var binding = ComponentBookItemBinding.bind(itemView)
-    }
+    class PostViewHolder(itemView: View, val binding: ComponentBookItemBinding) : RecyclerView.ViewHolder(itemView)
 
     class PostDiffCallback : DiffUtil.ItemCallback<HydraMember>() {
 

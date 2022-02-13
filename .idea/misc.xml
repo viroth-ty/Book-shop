@@ -13,6 +13,7 @@
         <entry key="app/src/main/res/layout/book_fragment.xml" value="0.24072265625000003" />
         <entry key="app/src/main/res/layout/book_item_view.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/component_book_item.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/component_detail_book_item.xml" value="0.3104166666666667" />
         <entry key="app/src/main/res/layout/component_empty.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/component_horizontal_group.xml" value="0.3104166666666667" />
         <entry key="app/src/main/res/layout/component_loading.xml" value="0.3098958333333333" />
