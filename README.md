@@ -5,7 +5,7 @@ Book shop is app that collect all books, you can
 - find book
 - find book by search author or title
 - read detail of book, author or release date
-- In book detail, user can save book to favourite or remove from favourite to view later time.
+- in book detail, user can save book to favourite or remove from favourite to view later time.
 
 **2. App Archetichure**
 
@@ -13,10 +13,16 @@ This app is single activity, means that there is only **Activity** and other vie
 
 - MVVM (Model, View, ViewModel)
 
-  This is using Jetpack library, included :
+  Jetpack libraries:
   * [Navigation](https://developer.android.com/jetpack/androidx/releases/navigation)
   * [Live Data](https://developer.android.com/jetpack/androidx/releases/lifecycle)
+  
+  UI (complex view in recycler view)
+  * [airbnb/epoxy](https://github.com/airbnb/epoxy/)
 
+  Network and network interceptor
+  * [Retrofit](https://square.github.io/retrofit/)
+  * [Chucker](https://github.com/ChuckerTeam/chucker)
 
-- Other Library
-  * [airbnb/epoxy](https://github.com/airbnb/epoxy/) for complex view in recyclerview
+  Json converter
+  * [Gson](https://github.com/google/gson)
