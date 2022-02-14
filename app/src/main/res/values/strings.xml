@@ -19,6 +19,6 @@
     <string name="borrowed">Borrow 1%s times</string>
     <string name="top_book_detail">Top Book Detail</string>
     <string name="bring_by">https://demo.api-platform.com/docs</string>
-    <string name="about_app">This app is made for you to find book easily with wasting time.</string>
+    <string name="about_app">This app is made for you to find books easily without wasting time.</string>
 
 </resources>
