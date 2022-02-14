@@ -16,8 +16,9 @@ This app is single activity. This means that there is only one **Activity** and 
   Jetpack libraries:
   * [Navigation](https://developer.android.com/jetpack/androidx/releases/navigation)
   * [Live Data](https://developer.android.com/jetpack/androidx/releases/lifecycle)
+  * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) 
   
-  Epoxy Recycler (Use for complex views in recycler view)
+  Epoxy RecyclerView (Use for complex views in recycler view)
   * [airbnb/epoxy](https://github.com/airbnb/epoxy/)
 
   Network and network interceptor
