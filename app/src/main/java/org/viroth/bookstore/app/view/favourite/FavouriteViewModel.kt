@@ -27,10 +27,12 @@ class FavouriteViewModel : BaseViewModel() {
             loading.postValue(true)
             val sqLiteOpenHelper = SQLiteDatabaseHandler(BookApplication.context)
             val bookList = sqLiteOpenHelper.getFavouriteBook()
-            books.postValue(bookList)
-            if(books.value?.isEmpty() == true) {
+            if(bookList.isEmpty()) {
                 empty.postValue(true)
+            } else {
+                empty.postValue(false)
             }
+            books.postValue(bookList)
         }
     }
 }

@@ -26,6 +26,7 @@ class TopBookDetailFragment : Fragment() {
         super.onCreate(savedInstanceState)
         statusBar.color(Color.TRANSPARENT).light(false)
     }
+    
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

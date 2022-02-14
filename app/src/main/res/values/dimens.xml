@@ -6,6 +6,7 @@
     <dimen name="menu_item_padding">8dp</dimen>
     <dimen name="item_padding_2">2dp</dimen>
     <dimen name="lottie_size">220dp</dimen>
+    <dimen name="empty_image_size">100dp</dimen>
     <dimen name="card_padding">24dp</dimen>
 
 </resources>

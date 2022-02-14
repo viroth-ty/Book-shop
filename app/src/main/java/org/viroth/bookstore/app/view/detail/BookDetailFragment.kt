@@ -82,6 +82,14 @@ class BookDetailFragment : Fragment() {
             binding.favouriteButton.setImageResource(if (isFavourite) R.drawable.ic_active_favourite else R.drawable.ic_inactive_favourite)
         }
 
+        viewModel.loading.observe(viewLifecycleOwner) {
+            binding.loadingView.root.visibility = if(it) View.VISIBLE else View.GONE
+        }
+
+        viewModel.empty.observe(viewLifecycleOwner) {
+            binding.emptyView.root.visibility = if(it) View.VISIBLE else View.GONE
+        }
+
     }
 
     override fun onDestroy() {
