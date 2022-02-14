@@ -6,15 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.seanghay.statusbar.statusBar
 import org.viroth.bookstore.app.R
 import org.viroth.bookstore.app.data.local.Constant
 import org.viroth.bookstore.app.databinding.BookDetailFragmentBinding
-import org.viroth.bookstore.app.model.HydraMember
-import org.viroth.bookstore.app.view.favourite.FavouriteViewModel
 
 class BookDetailFragment : Fragment() {
 
