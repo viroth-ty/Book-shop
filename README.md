@@ -17,9 +17,10 @@ This app is single activity. This means that there is only one **Activity** and 
   * [Navigation](https://developer.android.com/jetpack/androidx/releases/navigation)
   * [Live Data](https://developer.android.com/jetpack/androidx/releases/lifecycle)
   * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) 
+  * [View Binding](https://developer.android.com/topic/libraries/view-binding)
   
   Epoxy RecyclerView (Use for complex views in recycler view)
-  * [airbnb/epoxy](https://github.com/airbnb/epoxy/)
+  * [Airbnb/epoxy](https://github.com/airbnb/epoxy/)
 
   Network and network interceptor
   * [Retrofit](https://square.github.io/retrofit/)
@@ -29,4 +30,4 @@ This app is single activity. This means that there is only one **Activity** and 
   * [Gson](https://github.com/google/gson)
 
   Animation 
-  * [Lottie](https://airbnb.io/projects/lottie-android/#:~:text=Lottie%20for%20Android,painstakingly%20recreating%20it%20by%20hand.)
+  * [Lottie](https://airbnb.io/projects/lottie-android/#:~:text=Lottie%20for%20Android,painstakingly%20recreating%20it%20by%20hand)
