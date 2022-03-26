@@ -9,9 +9,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.seanghay.statusbar.statusBar
+import org.koin.android.ext.android.get
+import org.koin.android.ext.android.getKoin
+import org.koin.core.qualifier.named
 import org.viroth.bookstore.app.R
 import org.viroth.bookstore.app.data.local.Constant
 import org.viroth.bookstore.app.databinding.BookDetailFragmentBinding
+import org.viroth.bookstore.app.module.UserSession
 
 class BookDetailFragment : Fragment() {
 

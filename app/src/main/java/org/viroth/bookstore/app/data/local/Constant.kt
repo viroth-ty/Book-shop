@@ -2,6 +2,9 @@ package org.viroth.bookstore.app.data.local
 
 object Constant {
 
+    object Image {
+        const val image = "image"
+    }
     object Seat {
         const val AVAILABLE = "available"
         const val UNAVAILABLE = "unavailable"

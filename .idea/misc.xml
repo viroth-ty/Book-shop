@@ -8,6 +8,7 @@
         <entry key="app/src/main/res/drawable/ic_back.xml" value="0.278" />
         <entry key="app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.2005" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/activity_start.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/boo_detail_fragment.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/book_detail_fragment.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/book_fragment.xml" value="0.24072265625000003" />
@@ -22,6 +23,7 @@
         <entry key="app/src/main/res/layout/favourite_container_fragment.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/favourite_fragment.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/fragment_book_container.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/fragment_start.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/management_fragment.xml" value="0.3104166666666667" />
         <entry key="app/src/main/res/layout/profile_fragment.xml" value="0.3104166666666667" />
         <entry key="app/src/main/res/layout/search_fragment.xml" value="0.3098958333333333" />
